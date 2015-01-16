@@ -309,6 +309,16 @@ module.exports = function(grunt) {
             'templates/customers/*.*'
         ]);
 
+        var ignore_files = c.options['ignore_files'];
+        if (ignore_files) {
+          ignore_files.forEach(function(file) {
+            var index = filepaths.indexOf(file);
+            if (index !== -1) {
+              filepaths.splice(index, 1);
+            }
+          });
+        }
+
         if (options.noJson) {
             var index = filepaths.indexOf('settings_data.json');
             filepaths.splice(index, 1);
